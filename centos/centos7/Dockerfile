@@ -30,3 +30,5 @@ RUN ( \
 RUN . /etc/skel/.bash_profile ; pyenv install anaconda-2.3.0
 RUN . /etc/skel/.bash_profile ; pyenv install anaconda3-2.3.0
 RUN . /etc/skel/.bash_profile ; pyenv global anaconda3-2.3.0
+
+RUN yum install -y dbus
