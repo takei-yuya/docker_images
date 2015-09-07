@@ -15,5 +15,5 @@ for dockerfile in */*/Dockerfile; do
   repository="${path%/*}"
   tag="${path#*/}"
   docker build -t "${docker_username}/${repository}:${tag}" "${path}"
-  docker push "${docker_username}/${repository}:${tag}"
+  docker push -f "${docker_username}/${repository}:${tag}"
 done
