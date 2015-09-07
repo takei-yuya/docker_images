@@ -3,7 +3,7 @@ FROM centos:centos6
 MAINTAINER TAKEI Yuya <takei.yuya+docker@gmail.com>
 
 RUN yum install -y @Development
-RUN yum install -y vim-enhanced screen
+RUN yum install -y vim-enhanced screen sudo
 RUN yum install -y lsof curl nmap-ncat iproute psmisc procps-ng lsof bind-utils bridge-utils tar
 RUN yum install -y python-devel ruby-devel lua-devel cscope
 RUN yum install -y {glibc,zlib,openssl,readline,libxml2,expat,libtiff,libpng,libxslt,bzip2,xz,libyaml,libffi}-devel
