@@ -2,18 +2,18 @@
 
 set -e
 
-if type boot2docker >/dev/null; then
+# for Mac
+if type boot2docker >/dev/null 2>&1; then
   eval `boot2docker shellinit`
 fi
 
-docker_hub_user="$(docker info | sed 's/Username: //p;d')"
+: ${docker_username:="$(docker info | sed 's/Username: //p;d')"}
+: ${docker_username:?failed to get docker hub username. specify \'docker_username\' environment value, or run \'docker login\'}
 
-declare -a tags=()
 for dockerfile in */*/Dockerfile; do
   path="${dockerfile%/Dockerfile}"
   repository="${path%/*}"
   tag="${path#*/}"
-  tags[${#tags[@]}]="${docker_hub_user}/${repository}:${tag}"
-  docker build -t "${docker_hub_user}/${repository}:${tag}" "${path}"
-  docker push "${docker_hub_user}/${repository}:${tag}"
+  docker build -t "${docker_username}/${repository}:${tag}" "${path}"
+  docker push "${docker_username}/${repository}:${tag}"
 done
